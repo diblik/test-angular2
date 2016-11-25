@@ -1,0 +1,15 @@
+<person-table 
+    [selectedPerson]="person"
+    [persons]="persons" 
+    (onSelectEmit)="onSelect($event)">
+</person-table>
+<person-action 
+    [enableDeleteButton]="enableDeleteButton" 
+    [enableSaveButton]="enableSaveButton" 
+    (onCreateEmit)="onCreate($event)" 
+    (onSaveEmit)="onSave($event)" 
+    (onDeleteEmit)="onDelete($event)">
+</person-action>
+<person-detail 
+    [person]="person">
+</person-detail>

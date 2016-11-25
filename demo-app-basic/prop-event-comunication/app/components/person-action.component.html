@@ -1,0 +1,10 @@
+<a class="btn btn-primary" (click)="onCreate()">
+    <span class="glyphicon glyphicon-plus"></span>
+</a>
+<a class="btn btn-danger" (click)="onDelete()" [class.disabled]="!enableDeleteButton">
+    <span class="glyphicon glyphicon-minus"></span>
+</a>
+<a class="btn btn-success" (click)="onSave()" [class.disabled]="!enableSaveButton"> 
+    <span>Uložit</span>
+</a>
+<br/>

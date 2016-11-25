@@ -1,0 +1,14 @@
+<p-dataTable [value]="persons" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true"
+  rows="15" [responsive]="true">
+  <header>CRUD for Cars</header>
+  <p-column field="id" header="#" [sortable]="true"></p-column>
+  <p-column field="firstname" header="jmeno" [sortable]="true"></p-column>
+  <p-column field="lastname" header="prijmeni" [sortable]="true"></p-column>
+  <p-column field="email" header="email" [sortable]="true"></p-column>
+  <footer>
+    <div class="ui-helper-clearfix" style="width:100%">
+      <button type="button" pButton icon="fa-plus" style="float:left" (click)="goToNew()" label="Add"></button>
+      <button type="button" pButton icon="fa-edit" style="float:left" (click)="goToDetail()" label="Detail"></button>
+    </div>
+  </footer>
+</p-dataTable>

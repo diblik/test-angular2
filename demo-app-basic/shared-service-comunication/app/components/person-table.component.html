@@ -1,0 +1,20 @@
+<table class="table">
+  <tr>  
+    <th class="col-md-1">#</th>
+    <th class="col-md-3">Jméno</th>
+    <th class="col-md-4">Přímení</th>
+    <th class="col-md-4"> Email</th>
+  </tr>
+  <!-- alternativa -->
+  <!-- *ngFor="let person of personSharedService.getPersons() | async, let ndx = index" -->
+  <!-- (click)="personSharedService.selectPerson(person)" -->
+  <tr 
+    *ngFor="let person of persons, let ndx = index"
+    (click)="onSelect(person)" 
+    [class.active]="person.isSelected">
+    <td class="col-md-1">{{ndx+1}}</td>
+    <td class="col-md-3">{{person.firstname}}</td>
+    <td class="col-md-4">{{person.lastname}}</td>
+    <td class="col-md-4">{{person.email}}</td>
+  </tr>
+</table>

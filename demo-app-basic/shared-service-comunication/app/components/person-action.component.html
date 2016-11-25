@@ -1,0 +1,10 @@
+<a class="btn btn-primary" (click)="personSharedService.selectNewPerson()">
+    <span class="glyphicon glyphicon-plus"></span>
+</a>
+<a class="btn btn-danger" (click)="personSharedService.deleteSelectedPerson()" [class.disabled]="!enableDeleteButton">
+    <span class="glyphicon glyphicon-minus"></span>
+</a>
+<a class="btn btn-success" (click)="personSharedService.saveSelectedPerson()" [class.disabled]="!enableSaveButton"> 
+    <span>Uložit</span>
+</a>
+<br/>
