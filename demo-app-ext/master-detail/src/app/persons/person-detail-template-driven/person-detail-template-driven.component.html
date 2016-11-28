@@ -1,0 +1,105 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate (ngChange)="onSubmit(f)">
+  <p-panel header="Validate">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Jméno :
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text"
+                 [(ngModel)]="person.firstname" placeholder="jméno" name="firstname" (ngModelChange)="onDataChange()"
+                 #name="ngModel" required/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               [hidden]="name.valid || (name.pristine && !f.isSubmitted)">
+            <i class="fa fa-close"></i>
+            Jméno je povinný údaj.
+            {{ f.controls.firstname?.errors | json }}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Email:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text"
+                 [(ngModel)]="person.lastname" placeholder="přijmení" name="lastname" (ngModelChange)="onDataChange()"
+                 #lastname="ngModel" required/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               [hidden]="lastname.valid || (lastname.pristine && !f.isSubmitted)">
+            <i class="fa fa-close"></i>
+            Přijmení je povinný údaj.
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Příjmení:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text"
+                 [(ngModel)]="person.email" placeholder="email" name="email" (ngModelChange)="onDataChange()"
+                 #email="ngModel" required/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               [hidden]="email.valid || (email.pristine && !f.isSubmitted)">
+            <i class="fa fa-close"></i>
+            Email je povinný údaj.
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Datum :
+        </div>
+        <div class="ui-grid-col-6">
+          <p-calendar [(ngModel)]="person.birthday" name="birthday" #birthday="ngModel" dateFormat="dd.mm.yy" (ngModelChange)="onDataChange()"
+                      [showIcon]="true" required></p-calendar>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               [hidden]="birthday.valid || (birthday.pristine && !f.isSubmitted)">
+            <i class="fa fa-close"></i>
+            Datum narození je povinný údaj.
+            {{ f.controls.birthday?.errors | json }}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Pohlaví :
+        </div>
+        <div class="ui-grid-col-6">
+          <!--<p-dropdown [options]="genders" [(ngModel)]="person.gender" [autoWidth]="false" #gender="ngModel" required></p-dropdown>-->
+          <p-dropdown [options]="genders" [(ngModel)]="person.gender" name="gender" #gender="ngModel" (ngModelChange)="onDataChange()"
+                      required></p-dropdown>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               [hidden]="gender.valid || (gender.pristine && !f.isSubmitted)">
+            <i class="fa fa-close"></i>
+            Pohlaví je povinný údaj.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-6">
+        <button pButton type="submit" label="Submit" [disabled]="f.invalid || !changed"></button>
+      </div>
+      <div class="ui-grid-col-4"></div>
+    </div>
+
+  </p-panel>
+</form>

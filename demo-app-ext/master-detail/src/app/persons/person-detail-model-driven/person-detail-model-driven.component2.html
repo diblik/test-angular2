@@ -1,0 +1,41 @@
+<form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+
+  <label>Jméno:</label>
+  <input pInputText type="text" formControlName="firstname" placeholder="Required"/>
+  <div *ngIf="userform.controls.firstname.errors">
+    Jméno se musí vyplnit
+  </div>
+  <br>
+
+  <label>Příjmení:</label>
+  <input pInputText type="text" formControlName="lastname" placeholder="Required"/>
+  <div *ngIf="!userform.controls['lastname'].valid&&userform.controls['lastname'].dirty">
+    Lastname is required
+  </div>
+  <br>
+
+  <label>email:</label>
+  <input pInputText type="text" formControlName="email" placeholder="Required"/>
+  <div *ngIf="!userform.controls['email'].valid&&userform.controls['email'].dirty">
+    Lastname is required
+  </div>
+  <br>
+
+  <label>Datum narození:</label>
+  <p-calendar formControlName="birthday"></p-calendar>
+  <div *ngIf="!userform.controls['birthday'].valid&&userform.controls['birthday'].dirty">
+    Lastname is required
+  </div>
+  <br>
+
+  <label>Pohlaví:</label>
+  <p-dropdown [options]="genders" formControlName="gender" [autoWidth]="false"></p-dropdown>
+  <div *ngIf="!userform.controls['gender'].valid&&userform.controls['gender'].dirty">
+    Gender is required
+  </div>
+  <br>
+
+  <button pButton type="submit" label="Submit" [disabled]="!userform.valid"></button>
+
+</form>
+

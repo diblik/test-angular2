@@ -7,8 +7,9 @@
   <p-column field="email" header="email" [sortable]="true"></p-column>
   <footer>
     <div class="ui-helper-clearfix" style="width:100%">
-      <button type="button" pButton icon="fa-plus" style="float:left" (click)="goToNew()" label="Add"></button>
-      <button type="button" pButton icon="fa-edit" style="float:left" (click)="goToDetail()" label="Detail"></button>
+      <button type="button" pButton icon="fa-plus" style="float:left" (click)="goToNew()" label="Nový"></button>
+      <button type="button" pButton icon="fa-edit" style="float:left" (click)="goToDetail()" label="Detail" [disabled]="!selectedCar"></button>
+      <button type="button" pButton icon="fa-close" style="float:left" (click)="delete()" label="Smazat" [disabled]="!selectedCar"></button>
     </div>
   </footer>
 </p-dataTable>

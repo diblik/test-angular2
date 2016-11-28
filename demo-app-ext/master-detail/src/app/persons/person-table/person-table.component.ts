@@ -1,8 +1,8 @@
 import * as tls from 'tls';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { PersonService } from '../service/person-service';
-import { Person } from '../model/person';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {PersonService} from '../service/person-service';
+import {Person} from '../model/person';
 
 
 @Component({
@@ -10,22 +10,27 @@ import { Person } from '../model/person';
   templateUrl: './person-table.component.html',
   styleUrls: ['./person-table.component.css']
 })
-export class PersonTableComponent  implements OnInit {
+export class PersonTableComponent implements OnInit {
 
-    selectedPerson: Person;
-    persons: Person[];
+  selectedPerson: Person;
+  persons: Person[];
 
-    constructor(private personService: PersonService, private router: Router) { }
+  constructor(private personService: PersonService, private router: Router, private route: ActivatedRoute) {
+    route.data.subscribe(d => {
+      console.log("route.data.subscribe", d)
+      this.personService.getPersons().then(persons => this.persons = persons);
+    })
+  }
 
-    ngOnInit() {
-        this.personService.getPersons().then(persons => this.persons = persons);
-    }
+  ngOnInit() {
+    // this.personService.getPersons().then(persons => this.persons = persons);
+  }
 
-     onRowSelect(event) {
-        this.selectedPerson = JSON.parse(JSON.stringify(event.data));
-    }
+  onRowSelect(event) {
+    this.selectedPerson = JSON.parse(JSON.stringify(event.data));
+  }
 
-    goToDetail(){
-        this.router.navigate(['/persons', this.selectedPerson.id]);
-    }
+  goToDetail() {
+    this.router.navigate(['/persons', this.selectedPerson.id]);
+  }
 }
