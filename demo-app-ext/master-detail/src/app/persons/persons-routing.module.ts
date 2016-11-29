@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { PersonTableComponent } from "./person-table/person-table.component";
-import { PersonDetailResolve } from './service/person-detail-resolve';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PersonTableComponent} from "./person-table/person-table.component";
+import {PersonDetailResolve} from './service/person-detail-resolve';
 import {CanDeactivateGuard} from "../can-deactivate-guard";
 import {PersonDetailTemplateDrivenComponent} from "./person-detail-template-driven/person-detail-template-driven.component";
 import {PersonDetailModelDrivenComponent} from "./person-detail-model-driven/person-detail-model-driven.component";
+import {PersonDetailPartiallyModelDrivenComponent} from "./person-detail-partially-model-driven/person-detail-partially-model-driven.component";
+import {PersonDetailReactiveComponent} from "./person-detail-reactive/person-detail-reactive.component";
+import {PersonDetailComponent} from "./person-detail/person-detail.component";
 
 const appRoutes: Routes = [
   {
@@ -14,11 +17,22 @@ const appRoutes: Routes = [
       title: 'Persons table'
     }
   },
-    // children: [ // children znamena ze v PersonTableComponent musi byt <router-outler>
+  {
+    path: 'new',
+    component: PersonDetailComponent,
+    canDeactivate: [CanDeactivateGuard],
+    data: {
+      title: 'Persons new'
+    }
+  },
+  // children: [ // children znamena ze v PersonTableComponent musi byt <router-outler>
   {
     path: ':id',
+    // component: PersonDetailReactiveComponent,
     // component: PersonDetailTemplateDrivenComponent,
-    component: PersonDetailModelDrivenComponent,
+    component: PersonDetailComponent,
+    // component: PersonDetailModelDrivenComponent,
+    // component: PersonDetailPartiallyModelDrivenComponent,
     canDeactivate: [CanDeactivateGuard],
     resolve: {
       person: PersonDetailResolve
@@ -27,6 +41,7 @@ const appRoutes: Routes = [
       title: 'Persons detail'
     }
   },
+
 ];
 
 @NgModule({
@@ -37,4 +52,5 @@ const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class PersonRoutingModule { }
+export class PersonRoutingModule {
+}

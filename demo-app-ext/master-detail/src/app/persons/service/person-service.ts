@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Person} from "../model/person";
+import {Helper} from "../../service/utils/helper";
 
 export interface IPersonService {
   getPersons(): Promise<Person[]>;
@@ -17,7 +18,8 @@ export class PersonService implements IPersonService {
   //private personsUrl = 'http://hndocker.oksystem.local:58090/api/persons'
   private personsUrl = 'http://wverbovskym:3000/api/persons'
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
+
 
   /**
    * GET                 /api/persons                 list osob
@@ -26,9 +28,9 @@ export class PersonService implements IPersonService {
     console.log("PersonService.getPersons()");
     return this.http.get(this.personsUrl)
       .toPromise()
-      .then(response => {
+      .then((response: any) => {
         console.debug("PersonService.getPersons() return ", response.json());
-        return response.json() as Person[]
+        return Helper.Deserialize(response._body) as Person[]
       })
       .catch(this.handleError);
   }
@@ -40,9 +42,9 @@ export class PersonService implements IPersonService {
     console.log("PersonService.getPerson(id)", id);
     return this.http.get(this.personsUrl + "/" + id)
       .toPromise()
-      .then(response => {
-        console.debug("PersonService.getPerson(id) return ", response.json());
-        return response.json() as Person
+      .then((response: any) => {
+        console.debug("PersonService.getPerson(id) return ", response);
+        return Helper.Deserialize(response._body) as Person;
       })
       .catch(this.handleError);
   }
@@ -74,18 +76,18 @@ export class PersonService implements IPersonService {
   }
 
   /**
-  * PUT                  /api/persons/:id            aktualizuje záznam osoby pro dané id
-  */
+   * PUT                  /api/persons/:id            aktualizuje záznam osoby pro dané id
+   */
   updatePerson(person: Person): Promise<Person> {
     console.log("PersonService.updatePerson(person)", person);
     let body = JSON.stringify(person);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
     return this.http.put(this.personsUrl + "/" + person.id, body, options).toPromise()
-      .then(response => {
+      .then((response: any) => {
         console.debug("PersonService.updatePerson(person) return ", response.json());
-        return response.json() as Person;
+        return Helper.Deserialize(response._body) as Person;
       })
       .catch(this.handleError);
   }
@@ -96,13 +98,13 @@ export class PersonService implements IPersonService {
   createPerson(person: Person): Promise<Person> {
     console.log("PersonService.createPerson(person)", person);
     let body = JSON.stringify(person);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
     return this.http.post(this.personsUrl, body, options).toPromise()
-      .then(response => {
+      .then((response: any) => {
         console.debug("PersonService.createPerson(person) return ", response.json());
-        return response.json() as Person
+        return Helper.Deserialize(response._body) as Person;
       })
       .catch(this.handleError);
   }

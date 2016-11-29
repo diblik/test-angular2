@@ -1,11 +1,9 @@
 import {Person} from '../model/person';
 import {Router, ActivatedRoute} from '@angular/router';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, Validators, FormGroup, FormControl} from '@angular/forms';
-import {Message, SelectItem} from 'primeng/primeng';
-import {CanComponentDeactivate} from "../../can-deactivate-guard";
+import {Component, OnInit} from '@angular/core';
+import {SelectItem} from 'primeng/primeng';
 import {EventAggregatorService, Events} from "../../service/event-aggregator.service";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {PersonService} from "../service/person-service";
 
 @Component({
@@ -15,43 +13,36 @@ import {PersonService} from "../service/person-service";
 })
 export class PersonDetailTemplateDrivenComponent implements OnInit {
 
-  // @ViewChild('f')
-  // private form;
   private person: Person;
   private changed: boolean = false;
   private genders: SelectItem[];
   private formInNewMode: boolean = true;
   private isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
               private eventAggregatorService: EventAggregatorService,
-              private personService: PersonService) {
-    route.data.subscribe(d => {
-      console.log("PersonDetailTemplateDrivenComponent - route.data", d)
-    })
-  }
+              private personService: PersonService) { }
 
   onDataChange() {
     this.changed = true;
-    // console.log("onDataChange");
   }
 
   ngOnInit() {
     this.initGenders();
 
     this.route.data
-      .subscribe((data: { person: Person }) => {
-        data.person.birthday = new Date();
-        this.person = data.person
+      .map((data: { person: Person }) => {
+        if(!data.person){
+          return new Person();
+        }
+        return data.person;
+      })
+      .subscribe((person) => {
+        this.person = person;
         this.formInNewMode = false;
         console.log("PersonDetailTemplateDrivenComponent - route.data.person", this.person);
       });
-
-    // this.form.control.valueChanges.subscribe(values => {
-    //   console.log("values changed ", values)
-    //   this.changed = true});
   }
 
   initGenders() {

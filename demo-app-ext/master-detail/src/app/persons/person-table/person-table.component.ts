@@ -30,7 +30,17 @@ export class PersonTableComponent implements OnInit {
     this.selectedPerson = JSON.parse(JSON.stringify(event.data));
   }
 
-  goToDetail() {
+  onDetail() {
     this.router.navigate(['/persons', this.selectedPerson.id]);
+  }
+
+  onNew() {
+    this.router.navigate(['/persons', 'new']);
+  }
+
+  onRemove() {
+   this.personService.deletePerson(this.selectedPerson).then(()=> {
+     this.personService.getPersons().then(persons => this.persons = persons);
+   });
   }
 }
