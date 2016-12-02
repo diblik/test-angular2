@@ -1,4 +1,10 @@
 <!--<p-growl [value]="msgs"></p-growl>-->
-<app-service></app-service>
-<p-menubar [model]="items"></p-menubar>
-<router-outlet></router-outlet>
+<div>
+  <div class="">
+    <app-service></app-service>
+  </div>
+  <div class="mainContent">
+    <p-menubar [model]="items" ></p-menubar>
+    <router-outlet></router-outlet>
+  </div>
+</div>

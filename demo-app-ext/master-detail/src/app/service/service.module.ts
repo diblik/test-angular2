@@ -13,7 +13,7 @@ import {EventAggregatorService} from "./event-aggregator.service";
     ConfirmDialogModule,
   ],
   exports:[
-    ServiceComponent
+    ServiceComponent,
   ],
   declarations: [
     ServiceComponent

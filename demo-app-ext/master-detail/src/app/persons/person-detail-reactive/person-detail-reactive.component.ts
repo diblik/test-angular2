@@ -56,11 +56,6 @@ export class PersonDetailReactiveComponent implements OnInit, CanComponentDeacti
         console.log(this.person);
       });
 
-    // this.userform.valueChanges.subscribe((data) => {
-    //   this.onValueChanged(data);
-    //   this.changed = true;
-    // })
-
     let validFirstname = PersonValidations2.validFirstname(this.userform.valueChanges).map((data: any) => {
       let mess = ''
       for (let message of data.messages) {

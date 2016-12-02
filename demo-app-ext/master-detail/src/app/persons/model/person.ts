@@ -50,14 +50,13 @@ export class PersonValidations extends Validations {
   getValidations(): {[id: string]: IValidations[]} {
     return {
       'firstname': [
-        {name: 'required', message: 'Jméno se musí vyplnit.', validator: Validators.required},
-        {name: 'minlength', message: 'Zadejte minimálně 3 znaky.', validator: Validators.minLength(3)},
+        {name: 'required',  message: 'Jméno se musí vyplnit.',      validator: Validators.required},
+        {name: 'minlength', message: 'Zadejte minimálně 3 znaky.',  validator: Validators.minLength(3)},
         {name: 'maxlength', message: 'Zadejte maximálně 10 znaků.', validator: Validators.maxLength(10)},
-        {
-          name: 'startWithA',
-          message: 'Text musí začínat znakem \'a\' nebo \'A\'.',
-          validator: this.startWithA
-        }, // Custom valid
+        {name: 'startWithA',message: 'Text musí začínat znakem \'a\' nebo \'A\'.', validator: this.startWithA },
+      ],
+      'lastname': [
+        {name: 'required', message: 'Příjmení se musí vyplnit.', validator: Validators.required},
       ]
     }
   };

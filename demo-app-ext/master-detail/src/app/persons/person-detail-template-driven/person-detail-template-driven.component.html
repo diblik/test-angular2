@@ -8,10 +8,8 @@
         </div>
 
         <div class="ui-grid-col-6">
-          <input pInputText type="text"
-                 [(ngModel)]="person.firstname" placeholder="jméno" name="firstname" (ngModelChange)="onDataChange()"
-                 #firstname="ngModel"
-                 required minlength="3" maxlength="10"/>
+          <input pInputText type="text" [(ngModel)]="person.firstname" placeholder="jméno" name="firstname" (ngModelChange)="onDataChange()"
+                 #firstname="ngModel" required minlength="3" maxlength="10"/>
         </div>
 
         <div class="ui-grid-col-4">

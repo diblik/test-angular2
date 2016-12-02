@@ -1,23 +1,20 @@
 <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
-  <p-panel header="Model driven (1W binding, valid only)" >
+  <p-panel header="Model driven (1W binding, valid only)">
 
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
       <div class="ui-grid-row">
-
-        <div class="ui-grid-col-2">
-          Jméno :
-        </div>
-
+        <div class="ui-grid-col-2"> Jméno :</div>
         <div class="ui-grid-col-6">
           <input pInputText type="text" formControlName="firstname" placeholder="jméno"/>
         </div>
-
         <div class="ui-grid-col-4">
-          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="formError.firstname">
-            {{formError.firstname}}
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.firstname">
+            {{displayMessage.firstname}}
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="ui-grid-row">

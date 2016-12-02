@@ -1,7 +1,8 @@
 <br>
+<h1>Osoby</h1>
 <p-dataTable [value]="persons" selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" [paginator]="true"
   rows="15" [responsive]="true">
-  <header>Osoby</header>
+  <!--<header>Osoby</header>-->
   <p-column field="id" header="#" [sortable]="true"></p-column>
   <p-column field="firstname" header="jmeno" [sortable]="true"></p-column>
   <p-column field="lastname" header="prijmeni" [sortable]="true"></p-column>

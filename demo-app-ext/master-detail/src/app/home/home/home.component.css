@@ -1,0 +1,20 @@
+.mainContent{
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  color: #1b1d1f;
+  background: #f6f7f9 0 0 repeat-x;
+  background-image: linear-gradient(rgb(246, 247, 249) 0%, rgb(235, 237, 240) 100%);
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f7f9), color-stop(100%,#ebedf0));
+  background: -webkit-linear-gradient(top, #f6f7f9 0%,#ebedf0 100%);
+  background: linear-gradient(to bottom, #f6f7f9 0%,#ebedf0 100%);
+}
