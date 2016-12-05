@@ -26,8 +26,6 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
   // productForm: FormGroup;
   displayMessage: { [key: string]: string } = {};
 
-  private sub: Subscription;
-
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
@@ -53,6 +51,18 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
         maxlength: 'Zadejte maximálně 10 znaků.',
         startWithA: 'Text musí začínat znakem \'a\' nebo \'A\'.'
       },
+      lastname: {
+        required: 'Příjmení se musí vyplnit.',
+      },
+      email: {
+        required: 'Email se musí vyplnit.',
+      },
+      birthday: {
+        required: 'Datum narození se musí vyplnit.',
+      },
+      gender: {
+        required: 'Pohlaví se musí vyplnit.',
+      },
     };
 
     this.genericValidator = new GenericValidator(this.validationMessages);
@@ -63,6 +73,10 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
 
     this.userform = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10), TextValidators.startWithA() ]],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      birthday: ['', Validators.required],
+      gender: ['', Validators.required],
     });
     // set data edit i new
     this.route.data
@@ -91,25 +105,6 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
     this.genders.push({label: 'Muž', value: "1"});
     this.genders.push({label: 'Žena', value: "0"});
   }
-
-  // onValueChanged(data: any) {
-  //     // console.log(data);
-  //     for (let field in this.formError) {
-  //       this.formError[field] = '';
-  //       // doslo ke zmene user vstupem pres UI a cmp. neni validni
-  //       let hasError = this.userform.controls[field].dirty && !this.userform.controls[field].valid;
-  //
-  //       if(hasError){
-  //         // pokud je chyba zobrazim k ni patricnou message
-  //         for (let key in this.userform.controls[field].errors){
-  //           this.formError[field] += this.personValidations.getMessage(field, key) + ' ';
-  //         }
-  //       } else {
-  //         // jen pokud je vse validni tak prepisu puvodni hodnotu
-  //         this.person[field] = data[field];
-  //       }
-  //     }
-  // }
 
   ngAfterViewInit(): void {
     let controlBlurs: Observable<any>[] = this.formControls
