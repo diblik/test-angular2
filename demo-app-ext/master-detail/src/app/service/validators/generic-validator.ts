@@ -25,31 +25,28 @@ export class GenericValidator {
     // controlName2: 'Validation Message.'
     processMessages(container: FormGroup): { [key: string]: string } {
         let messages = {};
-      console.log("processMessages", container)
+        messages['error'] = 'false'
         for (let controlKey in container.controls) {
-          console.log("controlKey", controlKey)
             if (container.controls.hasOwnProperty(controlKey)) {
                 let c = container.controls[controlKey];
-              console.log("hasOwnProperty", c)
                 // If it is a FormGroup, process its child controls.
                 if (c instanceof FormGroup) {
                     let childMessages = this.processMessages(c);
                     Object.assign(messages, childMessages);
-                    console.log("je to formgroup", childMessages)
                 } else {
-                  console.log("neni to formgroup")
                     // Only validate if there are validation messages for the control
                     if (this.validationMessages[controlKey]) {
-                      console.log("jpro KK exist validationMessages")
                         messages[controlKey] = '';
                         if ((c.dirty || c.touched) && c.errors) {
-                          console.log("hledam ...")
                             for (let messageKey in c.errors) {
-                              console.log("messageKey", messageKey)
                                 if (c.errors.hasOwnProperty(messageKey) &&
                                     this.validationMessages[controlKey][messageKey]) {
-                                    messages[controlKey] += this.validationMessages[controlKey][messageKey];
-                                  console.log("mam ji",  messages[controlKey])
+                                    let text = this.validationMessages[controlKey][messageKey];
+                                    for (let errorSpecific in c.errors[messageKey]) {
+                                      text = text.replace('{' + errorSpecific +'}',  c.errors[messageKey][errorSpecific])
+                                    }
+                                    messages[controlKey] += text + " ";
+                                    messages['error'] = 'true'
                                 }
                             }
                         }

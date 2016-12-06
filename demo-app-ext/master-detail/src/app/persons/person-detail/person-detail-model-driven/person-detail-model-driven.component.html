@@ -1,0 +1,74 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit(personForm.value)">
+  <p-panel header="Model driven (1W binding, valid only)">
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"> Jméno :</div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="firstname" placeholder="jméno" />
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.firstname">
+            {{displayMessage.firstname}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"> Příjmení :</div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="lastname" placeholder="příjmení" />
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.lastname">
+            {{displayMessage.lastname}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"> Email :</div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="email" placeholder="jméno" />
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.email">
+            {{displayMessage.email}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"> Datum :</div>
+        <div class="ui-grid-col-6">
+          <p-calendar formControlName="birthday" dateFormat="dd.mm.yy" placeholder="datum" [showIcon]="true"></p-calendar>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.birthday">
+            {{displayMessage.birthday}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"> Pohlaví :</div>
+        <div class="ui-grid-col-6">
+          <app-genders formControlName="gender" ></app-genders>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="displayMessage.gender">
+            {{displayMessage.gender}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-6">
+        <button pButton type="submit" label="Submit" [disabled]="!personForm.valid || !personForm.dirty"></button>
+      </div>
+      <div class="ui-grid-col-4"></div>
+    </div>
+  </p-panel>
+</form>
