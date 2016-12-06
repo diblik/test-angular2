@@ -26,7 +26,7 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  private personForm: FormGroup;
+  personForm: FormGroup;
   private isSubmitted: boolean;
   private person: Person;
   private changed: boolean = false;
@@ -115,11 +115,11 @@ export class PersonDetailModelDrivenComponent implements OnInit, CanComponentDea
   }
 
   onSubmit(value: string) {
-    console.log(this.personForm, this.person, value, this.formInNewMode, this.changed);
+    //console.log(this.personForm, this.person, value, this.formInNewMode, this.changed);
     if (this.personForm.dirty && this.personForm.valid) {
 
-    }
-    if (this.changed) {
+    // }
+    // if (this.changed) {
       this.isSubmitted = true;
       this.personService.savePerson(this.person).then(() => {
         this.gotToTable();

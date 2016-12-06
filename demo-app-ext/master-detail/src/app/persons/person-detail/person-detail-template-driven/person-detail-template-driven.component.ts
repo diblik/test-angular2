@@ -15,7 +15,6 @@ export class PersonDetailTemplateDrivenComponent implements OnInit {
 
   private person: Person;
   private changed: boolean = false;
-  private genders: SelectItem[];
   private formInNewMode: boolean = true;
   private isSubmitted: boolean = false;
 
@@ -29,8 +28,6 @@ export class PersonDetailTemplateDrivenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initGenders();
-
     this.route.data
       .map((data: { person: Person }) => {
         if(!data.person){
@@ -43,13 +40,6 @@ export class PersonDetailTemplateDrivenComponent implements OnInit {
         this.formInNewMode = false;
         console.log("PersonDetailTemplateDrivenComponent - route.data.person", this.person);
       });
-  }
-
-  initGenders() {
-    this.genders = [];
-    this.genders.push({label: 'Vyberte pohlaví', value: ""});
-    this.genders.push({label: 'Muž', value: "1"});
-    this.genders.push({label: 'Žena', value: "0"});
   }
 
   onSubmit({value, valid}: { value: Person, valid: boolean }) {
