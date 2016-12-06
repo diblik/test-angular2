@@ -43,10 +43,12 @@ export class GenericValidator {
                                     this.validationMessages[controlKey][messageKey]) {
                                     let text = this.validationMessages[controlKey][messageKey];
                                     for (let errorSpecific in c.errors[messageKey]) {
-                                      text = text.replace('{' + errorSpecific +'}',  c.errors[messageKey][errorSpecific])
+                                        if (text) {
+                                            text = text.replace('{' + errorSpecific + '}',  c.errors[messageKey][errorSpecific])
+                                        }
                                     }
                                     messages[controlKey] += text + " ";
-                                    messages['error'] = 'true'
+                                    messages['error'] = 'true';
                                 }
                             }
                         }

@@ -23,6 +23,7 @@ import { PersonDetailPartiallyModelDrivenComponent } from './person-detail/perso
 import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { GendersComponent } from './genders/genders.component';
 import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
+import {ServiceModule} from "../service/service.module";
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {RadioButtonModule} from "primeng/components/radiobutton/radiobutton";
     DropdownModule,
     CalendarModule,
     RadioButtonModule,
+    ServiceModule,
   ],
   declarations: [
     PersonTableComponent,

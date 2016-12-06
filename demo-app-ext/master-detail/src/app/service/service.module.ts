@@ -5,6 +5,7 @@ import {ServiceComponent} from "./service/service.component";
 import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialog";
 import {ConfirmationService} from "primeng/components/common/api";
 import {EventAggregatorService} from "./event-aggregator.service";
+import { StartWithADirective } from './validators/start-with-a.directive';
 
 @NgModule({
   imports: [
@@ -14,9 +15,11 @@ import {EventAggregatorService} from "./event-aggregator.service";
   ],
   exports:[
     ServiceComponent,
+    StartWithADirective
   ],
   declarations: [
-    ServiceComponent
+    ServiceComponent,
+    StartWithADirective
   ],
   providers:[
     ConfirmationService,

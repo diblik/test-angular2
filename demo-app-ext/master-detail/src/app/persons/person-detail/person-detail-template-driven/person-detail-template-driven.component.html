@@ -10,7 +10,7 @@
         <div class="ui-grid-col-6">
           <input pInputText type="text" [(ngModel)]="person.firstname" placeholder="jméno" name="firstname"
                  (ngModelChange)="onDataChange()"
-                 #firstname="ngModel" required minlength="3" maxlength="10"/>
+                 #firstname="ngModel" required minlength="3" maxlength="10" startWithA />
         </div>
 
         <div class="ui-grid-col-4">
@@ -22,6 +22,7 @@
             <span *ngIf="firstname.errors?.maxlength">
               Zadejte maximálně {{firstname.errors?.maxlength.requiredLength}} znaků.
               (zadáno {{firstname.errors?.maxlength.actualLength}} z {{firstname.errors?.maxlength.requiredLength}}).</span>
+            <span *ngIf="firstname.errors?.startWithA">Text musí začínat znakem 'a' nebo 'A'.</span>
             <!--{{ f.controls.firstname?.errors | json }}-->
           </div>
         </div>
